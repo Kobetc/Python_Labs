@@ -12,12 +12,19 @@ def drawText(text):
     textPen.write(text, move=False, align="left", font=("Arial", 20, "normal"))
 
 
+def printMessage(text):
+    drawText(text)
+    print(text)
+
+
 class Figure:
 
     #
     # Сдвиг многоугольника по X и Y
     #
     def move(self,  shiftX=0, shiftY=0):
+        printMessage("Сдвиг фигуры")
+
         for point in range(self.nPoints):
             self.points[point] = (self.points[point][0] +
                                   shiftX, self.points[point][1] + shiftY)
@@ -26,7 +33,6 @@ class Figure:
     # Рисование многоугольника
     #
     def draw(self):
-
         pen.up()
         pen.setpos(self.points[0][0],
                    self.points[0][1])
@@ -39,9 +45,22 @@ class Figure:
                    self.points[0][1])
 
     #
-    # Проверка, включена ли фигура anotherFigure в self методом площадей
+    # Проверка, включена ли фигура anotherFigure в self фигуру методом площадей
     #
     def is_include(self,  anotherFigure):
+
+        try:
+            if not (len(anotherFigure.points) > 0):
+                raise TypeError(
+                    "Фигура anotherFigure не имеет вершин !")
+
+            if not (len(self.points) > 0):
+                raise TypeError(
+                    "Фигура self не имеет вершин !")
+
+        except TypeError as e:
+            printMessage(e)
+            return
 
         # Беруться координаты X и Y вершин фигуры anotherFigure
         for anotherFigurePoint in range(anotherFigure.nPoints):
@@ -67,12 +86,12 @@ class Figure:
             # площадь треугольников хоть для одной вершины фигуры anotherFigure получится больше прощади self фигуры
             # значит фигура anotherFigure не полностью входит в self фигуру
             if pointS > self.s:
-                drawText("Другая фигура НЕ включена в текущую фигуру")
-                print("Другая фигура НЕ включена в текущую фигуру")
+                printMessage("Другая фигура НЕ включена в текущую фигуру")
+
                 return
 
-        drawText("Другая фигура включена в текущую фигуру")
-        print("Другая фигура включена в текущую фигуру")
+        printMessage("Другая фигура включена в текущую фигуру")
+
         return
 
 
@@ -85,7 +104,7 @@ class Rectangle (Figure):
         self.id = uuid.uuid4()              # Уникальный идентификатор
         self.nPoints = 4                    # Число вершин
 
-         try:
+        try:
             if width <= 0 or height <= 0:
                 raise TypeError(
                     "Значения длины и ширины должны быть больше 0 !")
@@ -94,7 +113,7 @@ class Rectangle (Figure):
             self.height = height    # Высота прямоугольника
 
         except TypeError as e:
-            print(e)
+            printMessage(e)
             self.width = 200     # Ширина прямоугольника при ошибке ввода
             self.height = 100    # Высота прямоугольника при ошибке ввода
 
