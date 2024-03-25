@@ -12,12 +12,19 @@ def drawText(text):
     textPen.write(text, move=False, align="left", font=("Arial", 20, "normal"))
 
 
+def printMessage(text):
+    drawText(text)
+    print(text)
+
+
 class Figure:
 
     #
     # Сдвиг многоугольника по X и Y
     #
     def move(self,  shiftX=0, shiftY=0):
+        printMessage("Сдвиг фигуры")
+
         for point in range(self.nPoints):
             self.points[point] = (self.points[point][0] +
                                   shiftX, self.points[point][1] + shiftY)
@@ -26,7 +33,6 @@ class Figure:
     # Рисование многоугольника
     #
     def draw(self):
-
         pen.up()
         pen.setpos(self.points[0][0],
                    self.points[0][1])
@@ -41,8 +47,8 @@ class Figure:
     #
     # Проверка, включена ли фигура anotherFigure в self методом площадей
     #
-    def is_include(self,  anotherFigure):
 
+    def is_include(self,  anotherFigure):
         # Беруться координаты X и Y вершин фигуры anotherFigure
         for anotherFigurePoint in range(anotherFigure.nPoints):
             anotherFigurePointX = anotherFigure.points[anotherFigurePoint][0]
@@ -67,12 +73,10 @@ class Figure:
             # площадь треугольников хоть для одной вершины фигуры anotherFigure получится больше прощади self фигуры
             # значит фигура anotherFigure не полностью входит в self фигуру
             if pointS > self.s:
-                drawText("Другая фигура НЕ включена в текущую фигуру")
-                print("Другая фигура НЕ включена в текущую фигуру")
+                printMessage("Другая фигура НЕ включена в текущую фигуру")
                 return
 
-        drawText("Другая фигура включена в текущую фигуру")
-        print("Другая фигура включена в текущую фигуру")
+        printMessage("Другая фигура включена в текущую фигуру")
         return
 
 
