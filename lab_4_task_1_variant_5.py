@@ -48,4 +48,35 @@ def getData(filePath):
     return {"dataLen": dataLen, "minMinutes": minMinutes, "data": data}
 
 
-print(getData(fileAPath))
+data = getData(fileAPath)
+
+maxValue = 0                # Максимальный элемент на дистанции 2 * k от третьего элемента
+maxMultyTwoElements = 0     # Максимальную сумму пары на дистанции k
+maxMultyTreeElements = 0    # максимальную сумму трех элементов
+
+for index in range(2 * data["minMinutes"], data["dataLen"]):
+    maxValue = max(maxValue, data["data"][index - 2 * data["minMinutes"]])
+    maxMultyTwoElements = max(
+        maxMultyTwoElements, maxValue + data["data"][index - data["minMinutes"]])
+    maxMultyTreeElements = max(
+        maxMultyTreeElements, maxMultyTwoElements + data["data"][index])
+
+
+print(maxMultyTreeElements)  # Ответ для файла 27-166a.txt: 280212
+
+
+data = getData(fileBPath)
+
+maxValue = 0                # Максимальный элемент на дистанции 2 * k от третьего элемента
+maxMultyTwoElements = 0     # Максимальную сумму пары на дистанции k
+maxMultyTreeElements = 0    # максимальную сумму трех элементов
+
+for index in range(2 * data["minMinutes"], data["dataLen"]):
+    maxValue = max(maxValue, data["data"][index - 2 * data["minMinutes"]])
+    maxMultyTwoElements = max(
+        maxMultyTwoElements, maxValue + data["data"][index - data["minMinutes"]])
+    maxMultyTreeElements = max(
+        maxMultyTreeElements, maxMultyTwoElements + data["data"][index])
+
+
+print(maxMultyTreeElements)  # Ответ для файла 27-166b.txt: 26997
