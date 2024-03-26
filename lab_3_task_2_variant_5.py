@@ -51,14 +51,14 @@ class Figure:
 
         try:
             if not (len(anotherFigure.points) > 0):
-                raise TypeError(
+                raise ValueError(
                     "Фигура anotherFigure не имеет вершин !")
 
             if not (len(self.points) > 0):
-                raise TypeError(
+                raise ValueError(
                     "Фигура self не имеет вершин !")
 
-        except TypeError as e:
+        except ValueError as e:
             printMessage(e)
             return
 
@@ -106,16 +106,16 @@ class Rectangle (Figure):
 
         try:
             if width <= 0 or height <= 0:
-                raise TypeError(
+                raise ValueError(
                     "Значения длины и ширины должны быть больше 0 !")
 
             self.width = width      # Ширина прямоугольника
             self.height = height    # Высота прямоугольника
 
-        except TypeError as e:
+        except ValueError as e:
             printMessage(e)
-            self.width = 200     # Ширина прямоугольника при ошибке ввода
-            self.height = 100    # Высота прямоугольника при ошибке ввода
+            self.width = 500     # Ширина прямоугольника при ошибке ввода
+            self.height = 400    # Высота прямоугольника при ошибке ввода
 
         self.s = self.width * self.height   # Площадь прямоугольника
 
@@ -140,14 +140,14 @@ class Pentagon (Figure):
 
         try:
             if radius <= 0:
-                raise TypeError(
+                raise ValueError(
                     "Значение описанного радиуса пятиугольника должно быть больше 0 !")
 
             self.radius = radius    # радиус описанной окружности пятиугольника
 
-        except TypeError as e:
+        except ValueError as e:
             print(e)
-            self.radius = 300    # радиус описанной окружности пятиугольника при ошибке ввода
+            self.radius = 100    # радиус описанной окружности пятиугольника при ошибке ввода
 
         # Площадь аятиугольника
         self.s = (self.nPoints/2 * (self.radius ** 2)
@@ -174,7 +174,6 @@ textPen = turtle.Turtle()
 pen = turtle.Turtle()
 
 turtle.screensize(900, 600)
-
 
 rectangle = Rectangle(450, 350, -250, -150)
 pentagon = Pentagon(100, -100, -100)
