@@ -13,8 +13,17 @@ def drawText(text):
 
 
 def printMessage(text):
-    drawText(text)
-    print(text)
+    try:
+        if not isinstance(text, str):
+            raise ValueError(
+                "Параметр text должен иметь тип str !")
+
+        drawText(text)
+        print(text)
+
+    except ValueError as e:
+        print(e)
+        return
 
 
 class Figure:
@@ -64,17 +73,23 @@ class Figure:
 
         # Беруться координаты X и Y вершин фигуры anotherFigure
         for anotherFigurePoint in range(anotherFigure.nPoints):
-            anotherFigurePointX = anotherFigure.points[anotherFigurePoint][0]
-            anotherFigurePointY = anotherFigure.points[anotherFigurePoint][1]
+            try:
+                anotherFigurePointX = anotherFigure.points[anotherFigurePoint][0]
+                anotherFigurePointY = anotherFigure.points[anotherFigurePoint][1]
+            except IndexError:
+                printMessage("Что то пошло не так !")
 
             pointS = 0  # Площадь треугольников между вершинами фигуры anotherFigure и двумя вершинами self фигуры
 
             # Беруться координаты X и Y 2-х вершин self фигуры
             for point in range(self.nPoints):
-                pointX = self.points[point][0]
-                pointY = self.points[point][1]
-                pointX_prev = self.points[point - 1][0]
-                pointY_prev = self.points[point - 1][1]
+                try:
+                    pointX = self.points[point][0]
+                    pointY = self.points[point][1]
+                    pointX_prev = self.points[point - 1][0]
+                    pointY_prev = self.points[point - 1][1]
+                except IndexError:
+                    printMessage("Что то пошло не так !")
 
                 # Вычисляется площадь треугольника из 3-х точек, одной вершины фигуры anotherFigure и 2-х вершин self фигуры
                 s = 0.5 * abs(((pointX - anotherFigurePointX) * (pointY_prev - anotherFigurePointY)) - (
@@ -146,7 +161,7 @@ class Pentagon (Figure):
             self.radius = radius    # радиус описанной окружности пятиугольника
 
         except ValueError as e:
-            print(e)
+            printMessage(e)
             self.radius = 100    # радиус описанной окружности пятиугольника при ошибке ввода
 
         # Площадь аятиугольника
@@ -167,7 +182,7 @@ class Pentagon (Figure):
 
                 angle = angle + 360 // 5
             except:
-                print("Что то пошло не так !")
+                printMessage("Что то пошло не так !")
 
 
 textPen = turtle.Turtle()
