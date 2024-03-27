@@ -21,10 +21,12 @@ def randomizeString(inputString):
     # Сливаем список в строку
     outputString = ("").join(randomizedOutputList)
 
+    print("Результат работы:")
+    print("")
     # "Дана строка. Необходимо перемешать все символы строки в случайном порядке."
-    print(inputString)
+    print("Исходная строка: ", inputString)
     # " оНс твебв.лаотедсшемвнеыуоосок то  аооерркпя симарймди  Ди. льаепнкчхсрам"
-    print(outputString)
+    print("Перемешанная строка: ", outputString)
 
     return outputString
 
@@ -53,8 +55,17 @@ def checkCapitalLetters(inputString):
     # Переворачиваем список заглавных букв, делая срез от начало до конца с шагом -1
     invertedCapitalLettersList = capitalLettersList[::-1]
 
-    print(capitalLettersList, invertedCapitalLettersList,
-          capitalLettersList == invertedCapitalLettersList)  # ['P', 'T', 'N', 'T', 'P'] ['P', 'T', 'N', 'T', 'P']
+    print("Результат работы:")
+    print("")
+
+    # ['P', 'T', 'N', 'T', 'P']
+    print("Исходный набор заглавных букв: ", capitalLettersList)
+
+    # ['P', 'T', 'N', 'T', 'P']
+    print("Перевернутый набор заглавных букв: ",  invertedCapitalLettersList)
+
+    # True
+    print("Равны ли наборы: ",  capitalLettersList == invertedCapitalLettersList)
 
     # Сравниваем прямой и перевернутый список. Если списки равны, значит прописные символы этой строки образуют палиндром
     return capitalLettersList == invertedCapitalLettersList
@@ -64,7 +75,7 @@ def checkCapitalLetters(inputString):
 #
 
 
-def randomizeString(inputString: str):
+def sortString(inputString: str):
 
     # Входную строку преобразовываем в список по словам, удаляя предварительно из строки запятые и точки, если они есть
     wordList = inputString.replace(".", "").replace(",", "").split(" ")
@@ -88,16 +99,31 @@ def randomizeString(inputString: str):
 
     outputString = " ".join(outputWordList)
 
+    print("Результат работы:")
+    print("")
     # Дана строка в которой записаны слова через пробел. Необходимо упорядочить слова по количеству букв в каждом слове.
-    print(inputString)
+    print("Исходная строка: ", inputString)
     # в по Дана букв слова слове через каждом пробел строка которой записаны Необходимо количеству упорядочить
-    print(outputString)
+    print("Упорядоченная строка: ", outputString)
 
     return outputString
 
 
-randomizeString(inputStringForTask5)
+userInput = ""
 
-checkCapitalLetters(inputStringForTask7)
+while userInput.lower() != "exit":
 
-randomizeString(inputStringForTask14)
+    print("")
+    print("1. Дана строка. Необходимо перемешать все символы строки в случайном порядке.")
+    print("2. Дана строка, состоящая из символов латиницы. Необходимо проверить, образуют ли прописные символы этой строки палиндром.")
+    print("3. Дана строка в которой записаны слова через пробел. Необходимо упорядочить слова по количеству букв в каждом слове.")
+    print("")
+    userInput = input("Введите номер задачи или exit: ")
+    print("")
+
+    if userInput == "1":
+        randomizeString(inputStringForTask5)
+    elif userInput == "2":
+        checkCapitalLetters(inputStringForTask7)
+    elif userInput == "3":
+        sortString(inputStringForTask14)
