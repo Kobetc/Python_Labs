@@ -184,8 +184,21 @@ def maxLenNumber(inputString: str):
     return
 
 
-maxLenCyrillic(inputStringForTask5)
+userInput = ""
 
-minNaturNumber(inputStringForTask7)
+while userInput.lower() != "exit":
 
-maxLenNumber(inputStringForTask14)
+    print("")
+    print("1. Дана строка. Необходимо найти наибольшее количество идущих подряд символов кириллицы.")
+    print("2. Дана строка. Необходимо найти минимальное из имеющихся в ней натуральных чисел.")
+    print("3. Дана строка. Необходимо найти наибольшее количество идущих подряд цифр.")
+    print("")
+    userInput = input("Введите номер задачи или exit: ")
+    print("")
+
+    if userInput == "1":
+        maxLenCyrillic(inputStringForTask5)
+    elif userInput == "2":
+        minNaturNumber(inputStringForTask7)
+    elif userInput == "3":
+        maxLenNumber(inputStringForTask14)
