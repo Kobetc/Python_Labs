@@ -3,9 +3,9 @@
 import random
 
 
-digitalArrayForTask5 = [random.randrange(
-    0, 100) for index in range(random.randrange(10, 30))]
-indexForTask5 = random.randrange(0, len(digitalArrayForTask5))
+digitalArrayForTask5_17 = [random.randrange(
+    0, 10) for index in range(random.randrange(10, 20))]
+indexForTask5 = random.randrange(0, len(digitalArrayForTask5_17))
 
 
 #
@@ -14,7 +14,7 @@ indexForTask5 = random.randrange(0, len(digitalArrayForTask5))
 #
 
 
-def isMinByIndex(digitalArray: list, index: int):
+def isMinByIndex(digitalArray, index):
 
     # Определение минимального значения в числовом списке
     minValueInList = min(digitalArray)
@@ -45,5 +45,45 @@ def isMinByIndex(digitalArray: list, index: int):
 
     return
 
+#
+# Задача 17. Дан целочисленный массив. Необходимо поменять местами минимальный и максимальный элементы массива.
+#
 
-isMinByIndex(digitalArrayForTask5, indexForTask5)
+
+def exchangeMinMax(digitalArray: list):
+
+    # Создаем копию числового массива
+    copyDigitalArray = digitalArray.copy()
+
+    # Определяем минимальное число в массиве
+    minValueInArray = min(copyDigitalArray)
+    # Определяем индекс в массиве найденного минимального числа. Первое вхождение.
+    firstIndexMinValue = copyDigitalArray.index(minValueInArray)
+
+    # Определяем максимальное число в массиве
+    maxValueInArray = max(copyDigitalArray)
+    # Определяем индекс в массиве найденного максимального числа. Первое вхождение.
+    firstIndexMaxValue = copyDigitalArray.index(maxValueInArray)
+
+    # По индексу минимального числа записываем максимальное число
+    copyDigitalArray[firstIndexMinValue] = maxValueInArray
+    # По индексу максимального числа записываем минимальное число
+    copyDigitalArray[firstIndexMaxValue] = minValueInArray
+
+    print("Результат работы:")
+    print("")
+    # Целочисленный массив
+    print("Целочисленный массив: ", digitalArray)
+    print("Минимальное число в массиве: ", minValueInArray,
+          "его первый индекс: ", firstIndexMinValue)
+    print("Максимальное число в массиве: ", maxValueInArray,
+          "его первый индекс: ", firstIndexMaxValue)
+    print("Целочисленный массив с замененными минимальным и максимальным элементами массива: ",
+          copyDigitalArray)
+
+    return
+
+
+isMinByIndex(digitalArrayForTask5_17, indexForTask5)
+
+exchangeMinMax(digitalArrayForTask5_17)
