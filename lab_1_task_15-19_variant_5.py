@@ -4,7 +4,7 @@ import random
 
 
 digitalArrayForTask5_17_29 = [random.randrange(
-    0, 100) for index in range(random.randrange(10, 40))]
+    -100, 100) for index in range(random.randrange(10, 40))]
 indexForTask5 = random.randrange(0, len(digitalArrayForTask5_17_29))
 indexRangeForTask29 = [random.randrange(0, (len(digitalArrayForTask5_17_29) // 2)),
                        random.randrange((len(digitalArrayForTask5_17_29) // 2), len(digitalArrayForTask5_17_29))]
@@ -30,11 +30,6 @@ def isMinByIndex(digitalArray, index):
     print(digitalArray, index, minValueInList,
           valueFromListByIndex, isMinByIndex)
 
-    # Целочисленный массив:  [63, 36, 93, 29, 87, 42, 32, 24, 24, 30, 80, 82, 41, 84, 93, 15, 8, 87, 6, 20, 79]
-    # Натуральный индекс:  18
-    # Минимальное число в массиве:  6 минимальное число по заданному индексу:  6
-    # Является ли элемент по указанному индексу глобальным минимумом:  True
-
     print("Результат работы:")
     print("")
     # Целочисленный массив
@@ -52,7 +47,7 @@ def isMinByIndex(digitalArray, index):
 #
 
 
-def exchangeMinMax(digitalArray: list):
+def exchangeMinMax(digitalArray):
 
     # Создаем копию числового массива
     copyDigitalArray = digitalArray.copy()
@@ -90,7 +85,7 @@ def exchangeMinMax(digitalArray: list):
 #
 
 
-def findMaxInRange(digitalArray: list, indexRange: list):
+def findMaxInRange(digitalArray, indexRange):
 
     # Определяем максимальное число в массиве
     maxValueInArray = max(digitalArray)
@@ -113,9 +108,33 @@ def findMaxInRange(digitalArray: list, indexRange: list):
 
     return
 
+#
+# Задача 29. Дан целочисленный массив. Найти среднее арифметическое модулей его элементов.
+#
+
+
+def averageModules(digitalArray: list):
+
+    sumDigits = 0
+
+    for digit in digitalArray:
+        sumDigits = sumDigits + abs(digit)
+
+    averageDigits = sumDigits / len(digitalArray)
+
+    print("Результат работы:")
+    print("")
+    # Целочисленный массив
+    print("Целочисленный массив: ", digitalArray)
+    print("Среднее арифметическое модулей эдементов массива:", averageDigits)
+
+    return
+
 
 isMinByIndex(digitalArrayForTask5_17_29, indexForTask5)
 
 exchangeMinMax(digitalArrayForTask5_17_29)
 
 findMaxInRange(digitalArrayForTask5_17_29, indexRangeForTask29)
+
+averageModules(digitalArrayForTask5_17_29)
