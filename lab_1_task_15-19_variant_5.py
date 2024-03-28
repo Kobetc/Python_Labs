@@ -3,9 +3,11 @@
 import random
 
 
-digitalArrayForTask5_17 = [random.randrange(
-    0, 10) for index in range(random.randrange(10, 20))]
-indexForTask5 = random.randrange(0, len(digitalArrayForTask5_17))
+digitalArrayForTask5_17_29 = [random.randrange(
+    0, 100) for index in range(random.randrange(10, 40))]
+indexForTask5 = random.randrange(0, len(digitalArrayForTask5_17_29))
+indexRangeForTask29 = [random.randrange(0, (len(digitalArrayForTask5_17_29) // 2)),
+                       random.randrange((len(digitalArrayForTask5_17_29) // 2), len(digitalArrayForTask5_17_29))]
 
 
 #
@@ -83,7 +85,37 @@ def exchangeMinMax(digitalArray: list):
 
     return
 
+#
+# Задача 29. Дан целочисленный массив и интервал a..b. Необходимо проверить наличие максимального элемента массива в этом интервале.
+#
 
-isMinByIndex(digitalArrayForTask5_17, indexForTask5)
 
-exchangeMinMax(digitalArrayForTask5_17)
+def findMaxInRange(digitalArray: list, indexRange: list):
+
+    # Определяем максимальное число в массиве
+    maxValueInArray = max(digitalArray)
+    # Определяем индекс в массиве найденного максимального числа. Первое вхождение.
+    firstIndexMaxValue = digitalArray.index(maxValueInArray)
+
+    # Проверяем, находится ли максимальное значение массива в срезе этого массива ограниченного
+    # индексами из интервала
+    isMaxValueInRange = maxValueInArray in digitalArray[indexRange[0]:indexRange[1]]
+
+    print("Результат работы:")
+    print("")
+    # Целочисленный массив
+    print("Целочисленный массив: ", digitalArray)
+    print("Интервал с индексами начала:",
+          indexRange[0], "конца: ", indexRange[1])
+    print("Максимальное значение в массиве: ",
+          maxValueInArray, "его индекс: ", firstIndexMaxValue)
+    print("Находится ли максимальное значение в интервале: ", isMaxValueInRange)
+
+    return
+
+
+isMinByIndex(digitalArrayForTask5_17_29, indexForTask5)
+
+exchangeMinMax(digitalArrayForTask5_17_29)
+
+findMaxInRange(digitalArrayForTask5_17_29, indexRangeForTask29)
