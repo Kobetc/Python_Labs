@@ -1,10 +1,10 @@
 
 
-inputStringForTask2_6 = ("Натуральные числа — числа, получаемые при естественном счёте: N = { 1 , 2 , 3 , . . . }. Иногда к множеству натуральных чисел также относят ноль, то есть N = { 0 , 1 , 2 , 3 , . . . }.\n"
-                         "Целые числа — числа, получаемые объединением натуральных чисел со множеством чисел противоположных натуральным и нулём, обозначаются Z = { . . . − 2 , − 1 , 0 , 1 , 2 , . . . }.\n"
-                         "Рациональные числа — числа, представимые в виде дроби m/n (n ≠ 0), где m — целое число, а n — натуральное число.\n"
-                         "Действительные (вещественные) числа — числа, представляющие собой расширение множества рациональных чисел, замкнутое относительно некоторых (важных для математического анализа) операций предельного перехода.\n"
-                         "Комплексные числа — числа, являющиеся расширением множества действительных чисел. Они могут быть записаны в виде z = x + i y, где i — т. н. мнимая единица, для которой выполняется равенство i 2 = − 1.")
+inputStringForTask2_6_8 = ("Натуральные числа — числа, получаемые при естественном счёте: N = { 1 , 2 , 3 , . . . }. Иногда к множеству натуральных чисел также относят ноль, то есть N = { 0 , 1 , 2 , 3 , . . . }.\n"
+                           "Целые числа — числа, получаемые объединением натуральных чисел со множеством чисел противоположных натуральным и нулём, обозначаются Z = { . . . − 2 , − 1 , 0 , 1 , 2 , . . . }.\n"
+                           "Рациональные числа — числа, представимые в виде дроби m/n (n ≠ 0), где m — целое число, а n — натуральное число.\n"
+                           "Действительные (вещественные) числа — числа, представляющие собой расширение множества рациональных чисел, замкнутое относительно некоторых (важных для математического анализа) операций предельного перехода.\n"
+                           "Комплексные числа — числа, являющиеся расширением множества действительных чисел. Они могут быть записаны в виде z = x + i y, где i — т. н. мнимая единица, для которой выполняется равенство i 2 = − 1.")
 
 
 #
@@ -109,7 +109,7 @@ def getMedianOfStringByASCII(string):
     return medianOfStringByASCII
 
 
-def stringsMedian(inputString: str):
+def stringsMedian(inputString):
 
     # Список, куда будут помещаться строки по мере сортировки
     outputStringsList = []
@@ -161,7 +161,8 @@ def stringsMedian(inputString: str):
 
     return
 
-# Вычисления квадратичного отклонения между средним весом ASCII-кода символа в строке и максимально среднего ASCII-кода тройки подряд идущих символов в строке.
+# Вычисления квадратичного отклонения между средним весом ASCII-кода символа в строке и
+# максимально среднего ASCII-кода тройки подряд идущих символов в строке.
 
 
 def squareDeviation(string):
@@ -184,7 +185,7 @@ def squareDeviation(string):
     averageTriplets = []
 
     # Вычисление среднего значения для каждой тройки символов
-    for index in range(len(asciiCode) - 2):
+    for index in range(len(asciiCodes) - 3):
         oneItem = asciiCodes[index]
         twoItem = asciiCodes[index + 2]
         treeItem = asciiCodes[index + 3]
@@ -199,6 +200,41 @@ def squareDeviation(string):
     return squareDeviation
 
 
-averageWeightSymbols(inputStringForTask2_6)
+def sortStringsBySquareDeviation(inputString):
 
-stringsMedian(inputStringForTask2_6)
+    # Разбиваем строки по символу новой строки - \n
+    stringsList = inputString.split("\n")
+
+    stringWithDeviationList = []
+
+    for string in stringsList:
+
+        deviation = squareDeviation(string)
+
+        stringWithDeviationList.append((deviation, string))
+
+    # Сортируем список по первому значению каждого элемента, т.е. по квадратичному отклонению
+    sortedList = sorted(stringWithDeviationList, reverse=False)
+
+    outputString = "\n".join(string
+                             for (len, string) in sortedList)
+
+    print("Результат работы:")
+    print("")
+
+    print("Исходная строка: ")
+    print("")
+    print(inputString)
+    print("")
+    print("Отсортированная строка: ")
+    print("")
+    print(outputString)
+
+    return
+
+
+averageWeightSymbols(inputStringForTask2_6_8)
+
+stringsMedian(inputStringForTask2_6_8)
+
+sortStringsBySquareDeviation(inputStringForTask2_6_8)
