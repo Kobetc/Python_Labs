@@ -161,6 +161,43 @@ def stringsMedian(inputString: str):
 
     return
 
+# Вычисления квадратичного отклонения между средним весом ASCII-кода символа в строке и максимально среднего ASCII-кода тройки подряд идущих символов в строке.
+
+
+def squareDeviation(string):
+
+    asciiCodes = []
+
+    # Проходим по символам строки
+    for char in string:
+
+        # Определяем ASCII код символа
+        asciiCode = ord(char)
+
+        # Добавляем к списку
+        asciiCodes.append(asciiCode)
+
+    # Вычисление среднего значения ASCII-кодов
+    averageASCIICodes = sum(asciiCodes) / len(asciiCodes)
+
+    # Список средних значений для троек символов
+    averageTriplets = []
+
+    # Вычисление среднего значения для каждой тройки символов
+    for index in range(len(asciiCode) - 2):
+        oneItem = asciiCodes[index]
+        twoItem = asciiCodes[index + 2]
+        treeItem = asciiCodes[index + 3]
+        averageTriplets.append((oneItem + twoItem + treeItem) / 3)
+
+    # # Вычисление максимального среднего значения для троек символов
+    maxAverageTriplet = max(averageTriplets)
+
+    # Квадратичне отклонение
+    squareDeviation = (averageASCIICodes - maxAverageTriplet) ** 2
+
+    return squareDeviation
+
 
 averageWeightSymbols(inputStringForTask2_6)
 
