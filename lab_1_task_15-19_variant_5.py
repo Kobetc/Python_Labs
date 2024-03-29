@@ -173,12 +173,27 @@ def newList(digitalArray: list):
     return
 
 
-isMinByIndex(digitalArrayForTask5_17_29_41_53, indexForTask5)
+userInput = ""
 
-exchangeMinMax(digitalArrayForTask5_17_29_41_53)
+while userInput.lower() != "exit":
 
-findMaxInRange(digitalArrayForTask5_17_29_41_53, indexRangeForTask29)
+    print("")
+    print("1. Дан целочисленный массив и натуральный индекс (число, меньшее размера массива). Необходимо определить является ли элемент по указанному индексу глобальным минимумом.")
+    print("2. Дан целочисленный массив. Необходимо поменять местами минимальный и максимальный элементы массива.")
+    print("3. Дан целочисленный массив и интервал a..b. Необходимо проверить наличие максимального элемента массива в этом интервале.")
+    print("4. Дан целочисленный массив. Найти среднее арифметическое модулей его элементов.")
+    print("5. Для введенного списка построить новый с элементами, большими, чем среднее арифметическое списка, но меньшими, чем его максимальное значение.")
+    print("")
+    userInput = input("Введите номер задачи или exit: ")
+    print("")
 
-averageModules(digitalArrayForTask5_17_29_41_53)
-
-newList(digitalArrayForTask5_17_29_41_53)
+    if userInput == "1":
+        isMinByIndex(digitalArrayForTask5_17_29_41_53, indexForTask5)
+    elif userInput == "2":
+        exchangeMinMax(digitalArrayForTask5_17_29_41_53)
+    elif userInput == "3":
+        findMaxInRange(digitalArrayForTask5_17_29_41_53, indexRangeForTask29)
+    elif userInput == "4":
+        averageModules(digitalArrayForTask5_17_29_41_53)
+    elif userInput == "5":
+        newList(digitalArrayForTask5_17_29_41_53)
