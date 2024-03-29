@@ -3,11 +3,11 @@
 import random
 
 
-digitalArrayForTask5_17_29 = [random.randrange(
-    -100, 100) for index in range(random.randrange(10, 40))]
-indexForTask5 = random.randrange(0, len(digitalArrayForTask5_17_29))
-indexRangeForTask29 = [random.randrange(0, (len(digitalArrayForTask5_17_29) // 2)),
-                       random.randrange((len(digitalArrayForTask5_17_29) // 2), len(digitalArrayForTask5_17_29))]
+digitalArrayForTask5_17_29_41_53 = [random.randrange(
+    -10, 10) for _ in range(random.randrange(10, 40))]
+indexForTask5 = random.randrange(0, len(digitalArrayForTask5_17_29_41_53))
+indexRangeForTask29 = [random.randrange(0, (len(digitalArrayForTask5_17_29_41_53) // 2)),
+                       random.randrange((len(digitalArrayForTask5_17_29_41_53) // 2), len(digitalArrayForTask5_17_29_41_53))]
 
 
 #
@@ -109,17 +109,20 @@ def findMaxInRange(digitalArray, indexRange):
     return
 
 #
-# Задача 29. Дан целочисленный массив. Найти среднее арифметическое модулей его элементов.
+# Задача 41. Дан целочисленный массив. Найти среднее арифметическое модулей его элементов.
 #
 
 
 def averageModules(digitalArray: list):
 
+    # Сумма всех значений элементов списка
     sumDigits = 0
 
+    # Проходим по всем элементам списка и суммируем их после приведения по модулю
     for digit in digitalArray:
         sumDigits = sumDigits + abs(digit)
 
+    # Вычисляем среднее значение, сумму элементов списка делим на длину списка
     averageDigits = sumDigits / len(digitalArray)
 
     print("Результат работы:")
@@ -130,11 +133,52 @@ def averageModules(digitalArray: list):
 
     return
 
+#
+# Задача 53. Для введенного списка построить новый с элементами, большими,
+# чем среднее арифметическое списка, но меньшими, чем его максимальное значение.
+#
 
-isMinByIndex(digitalArrayForTask5_17_29, indexForTask5)
 
-exchangeMinMax(digitalArrayForTask5_17_29)
+def newList(digitalArray: list):
 
-findMaxInRange(digitalArrayForTask5_17_29, indexRangeForTask29)
+    # Сумма всех значений элементов списка
+    sumDigits = 0
 
-averageModules(digitalArrayForTask5_17_29)
+    # Проходим по всем элементам списка и суммируем их
+    for digit in digitalArray:
+        sumDigits = sumDigits + digit
+
+    # Вычисляем среднее значение, сумму элементов списка делим на длину списка
+    averageDigits = sumDigits // len(digitalArray)
+
+    # Определяем максимальное значение в списке
+    maxValueOfList = max(digitalArray)
+
+    # Новый список
+    newList = []
+
+    for _ in range(len(digitalArray)):
+
+        # Добавляем в новый список случайное число, которое больше вычесленного среднего и меньше максимального
+        newList.append(random.randrange(averageDigits+1, maxValueOfList))
+
+    print("Результат работы:")
+    print("")
+    # Целочисленный массив
+    print("Целочисленный массив: ", digitalArray)
+    print("Среднее арифметическое эдементов массива:", averageDigits)
+    print("Максимальное значение среди эдементов массива:", maxValueOfList)
+    print("Новый массив: ", newList)
+
+    return
+
+
+isMinByIndex(digitalArrayForTask5_17_29_41_53, indexForTask5)
+
+exchangeMinMax(digitalArrayForTask5_17_29_41_53)
+
+findMaxInRange(digitalArrayForTask5_17_29_41_53, indexRangeForTask29)
+
+averageModules(digitalArrayForTask5_17_29_41_53)
+
+newList(digitalArrayForTask5_17_29_41_53)
