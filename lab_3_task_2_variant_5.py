@@ -98,7 +98,7 @@ class Figure:
                 # Площади треугольников складываются
                 pointS = pointS + s
 
-            # площадь треугольников хоть для одной вершины фигуры anotherFigure получится больше прощади self фигуры
+            # Площадь треугольников хоть для одной вершины фигуры anotherFigure получится больше прощади self фигуры
             # значит фигура anotherFigure не полностью входит в self фигуру
             if pointS > self.s:
                 printMessage("Другая фигура НЕ включена в текущую фигуру")
@@ -139,7 +139,7 @@ class Rectangle (Figure):
         # Начальная координата Y нижней левой вершины прямоугольника
         self.posY = posY
 
-        # координаты верщин прямоугольника
+        # Координаты верщин прямоугольника
         self.points = [(self.posX, self.posY), (self.posX + self.width, self.posY), (self.posX + self.width,
                                                                                      self.posY + self.height), (self.posX, self.posY + self.height)]
 
@@ -158,11 +158,11 @@ class Pentagon (Figure):
                 raise ValueError(
                     "Значение описанного радиуса пятиугольника должно быть больше 0 !")
 
-            self.radius = radius    # радиус описанной окружности пятиугольника
+            self.radius = radius    # Радиус описанной окружности пятиугольника
 
         except ValueError as e:
             printMessage(e)
-            self.radius = 100    # радиус описанной окружности пятиугольника при ошибке ввода
+            self.radius = 100    # Радиус описанной окружности пятиугольника при ошибке ввода
 
         # Площадь аятиугольника
         self.s = (self.nPoints/2 * (self.radius ** 2)
@@ -173,6 +173,7 @@ class Pentagon (Figure):
         rad = 2 * math.pi / 360
         angle = 0 + startAngle
 
+        # Вычисляем координаты верщин пятиугольника
         for _ in range(self.nPoints):
             try:
                 coordX = int(math.sin(angle * rad) * self.radius) + posX
