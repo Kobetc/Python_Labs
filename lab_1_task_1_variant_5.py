@@ -1,10 +1,8 @@
+import math
 
 #
 # Задача 1. Найти количество делителей числа, не делящихся на 3.
 #
-
-
-import math
 
 
 def noDivToTree():
