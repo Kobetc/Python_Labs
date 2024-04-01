@@ -1,10 +1,10 @@
 
 
-inputStringForTask2_6_8 = ("Натуральные числа — числа, получаемые при естественном счёте: N = { 1 , 2 , 3 , . . . }. Иногда к множеству натуральных чисел также относят ноль, то есть N = { 0 , 1 , 2 , 3 , . . . }.\n"
-                           "Целые числа — числа, получаемые объединением натуральных чисел со множеством чисел противоположных натуральным и нулём, обозначаются Z = { . . . − 2 , − 1 , 0 , 1 , 2 , . . . }.\n"
-                           "Рациональные числа — числа, представимые в виде дроби m/n (n ≠ 0), где m — целое число, а n — натуральное число.\n"
-                           "Действительные (вещественные) числа — числа, представляющие собой расширение множества рациональных чисел, замкнутое относительно некоторых (важных для математического анализа) операций предельного перехода.\n"
-                           "Комплексные числа — числа, являющиеся расширением множества действительных чисел. Они могут быть записаны в виде z = x + i y, где i — т. н. мнимая единица, для которой выполняется равенство i 2 = − 1.")
+inputStringForTasks = ("Натуральные числа — числа, получаемые при естественном счёте: N = { 1 , 2 , 3 , . . . }. Иногда к множеству натуральных чисел также относят ноль, то есть N = { 0 , 1 , 2 , 3 , . . . }.\n"
+                       "Целые числа — числа, получаемые объединением натуральных чисел со множеством чисел противоположных натуральным и нулём, обозначаются Z = { . . . − 2 , − 1 , 0 , 1 , 2 , . . . }.\n"
+                       "Рациональные числа — числа, представимые в виде дроби m/n (n ≠ 0), где m — целое число, а n — натуральное число.\n"
+                       "Действительные (вещественные) числа — числа, представляющие собой расширение множества рациональных чисел, замкнутое относительно некоторых (важных для математического анализа) операций предельного перехода.\n"
+                       "Комплексные числа — числа, являющиеся расширением множества действительных чисел. Они могут быть записаны в виде z = x + i y, где i — т. н. мнимая единица, для которой выполняется равенство i 2 = − 1.")
 
 
 #
@@ -223,7 +223,7 @@ def sortStringsBySquareDeviation(inputString):
     sortedList = sorted(stringWithDeviationList, reverse=False)
 
     outputString = "\n".join(string
-                             for (len, string) in sortedList)
+                             for (_, string) in sortedList)
 
     print("Результат работы:")
     print("")
@@ -244,8 +244,111 @@ def sortStringsBySquareDeviation(inputString):
 # среднего веса ASCII-кода тройки символов в первой строке.
 #
 
-averageWeightSymbols(inputStringForTask2_6_8)
+#
+# Вычисление максимального среднего веса ASCII-кода тройки символов в строке
+#
 
-stringsMedian(inputStringForTask2_6_8)
+def maxAvrWeight(string: str):
 
-sortStringsBySquareDeviation(inputStringForTask2_6_8)
+    # Список средних весов ASCII кодов троек символов
+    avrWeights = []
+
+    for index in range(0, len(string)-2, 3):
+
+        # Вычисление ASCII кодов первого, второго, третьего символа стройки
+        charOne = ord(string[index])
+        charTwo = ord(string[index + 1])
+        charTree = ord(string[index + 2])
+
+        # Вычисление среднего веса ASCII кодов тройки символов
+        avr = (charOne + charTwo + charTree)/3
+
+        # Добавлление в список
+        avrWeights.append(avr)
+
+    # Вычисление максимального значения среднего веса ASCII кодов тройки символов в списке
+    maxAvrWeightByAll = max(avrWeights)
+
+    return maxAvrWeightByAll
+
+#
+# Вычисление квадратичного отклонения дисперсии двух чисел
+#
+
+
+def squareDeviation2(num1: float, num2: float):
+
+    # Вычисление среднего значения
+    avg = (num1 + num2) / 2
+
+    # Вычисление суммы квадратов отклонений от среднего значения
+    sumSquares = ((num1 - avg) ** 2 + (num2 - avg) ** 2)
+
+    # Вычисление дисперсии
+    dispersion = sumSquares / 2
+
+    # Вычисление квадратичного отклонения
+    squareDeviationByDispersion = dispersion ** 0.5
+
+    return squareDeviationByDispersion
+
+
+def sortStringsBySquareDeviation2(inputString: str):
+
+    # Разбиваем строки по символу новой строки - \n
+    stringsList = inputString.split("\n")
+
+    # Максимальный средний вес ASCII-кода тройки символов в ПЕРВОЙ строке
+    maxAvrWeightFirstString = maxAvrWeight(stringsList[0])
+
+    # Список, элементы которого будут содержать (квадратичного отклонения дисперсииб саму строку)
+    stringsWithSquareDeviationList = []
+
+    for string in stringsList:
+        maxAvrWeightString = maxAvrWeight(string)
+        squareDeviationString = squareDeviation2(
+            maxAvrWeightString, maxAvrWeightFirstString)
+
+        stringsWithSquareDeviationList.append((squareDeviationString, string))
+
+    # Сортируем список по первому значению каждого элемента, т.е. по квадратичному отклонению
+    sortedList = sorted(stringsWithSquareDeviationList, reverse=False)
+
+    outputString = "\n".join(string
+                             for (_, string) in sortedList)
+
+    print("Результат работы:")
+    print("")
+
+    print("Исходная строка: ")
+    print("")
+    print(inputString)
+    print("")
+    print("Отсортированная строка: ")
+    print("")
+    print(outputString)
+
+    return
+
+
+userInput = ""
+
+while userInput.lower() != "exit":
+
+    print("")
+    print("1. Отсортировать строки в указанном порядке: В порядке увеличения среднего веса ASCII-кода символа строки.")
+    print("2. Отсортировать строки в указанном порядке: В порядке увеличения медианного значения выборки строк (прошлое медианное значение удаляется из выборки и производится поиск нового медианного значения).")
+    print("3. Отсортировать строки в указанном порядке: В порядке увеличения квадратичного отклонения между средним весом ASCII-кода символа в строке и максимально среднего ASCII-кода тройки подряд идущих символов в строке.")
+    print("4. Отсортировать строки в указанном порядке: В порядке квадратичного отклонения дисперсии максимального среднего веса ASCII-кода тройки символов в строке от максимального среднего веса ASCII-кода тройки символов в первой строке.")
+    print("")
+    userInput = input("Введите номер задачи или exit: ")
+    print("")
+
+    if userInput == "1":
+        averageWeightSymbols(inputStringForTasks)
+    elif userInput == "2":
+        stringsMedian(inputStringForTasks)
+    elif userInput == "3":
+        sortStringsBySquareDeviation(inputStringForTasks)
+    elif userInput == "4":
+        sortStringsBySquareDeviation2(inputStringForTasks)
