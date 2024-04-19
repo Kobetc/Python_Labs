@@ -36,12 +36,14 @@
 
                     <div class="card-body text-muted"
                         style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <h6>Рекрутер: {{ applicant.recruiter }}</h6>
+                        <h6>Рекрутер: {% if applicant.recruiter != None %}{{ applicant.recruiter }}{% else %} ---
+                            {% endif %}</h6>
                     </div>
 
                     <div class="card-body text-muted"
                         style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                        <h6>Работодатель: {{ applicant.employer }}</h6>
+                        <h6>Работодатель: {% if applicant.employer != None %}{{ applicant.employer }}{% else %} ---
+                            {% endif %}</h6>
                     </div>
 
                     <div class="card-footer"

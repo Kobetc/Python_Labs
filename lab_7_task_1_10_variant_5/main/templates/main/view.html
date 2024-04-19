@@ -1,7 +1,7 @@
 {% extends 'main/template.html' %}
 
 {% block title %}
-<title>Кадровое агентство - Просмотр Соискателя</title>
+<title>Кадровое агентство - Просмотр Редактирование</title>
 {% endblock %}
 
 {% block body %}
@@ -12,46 +12,41 @@
     </div>
 </div>
 
-<form method="post">
+<div class="row p-3">
+    <div class="col col-m p-3">
+        <form method="post" class="needs-validation">
 
-    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center g-3 p-3">
+            {% csrf_token %}
 
-
-        <div class="col">
-            <div class="card mb-3 rounded-3 shadow-sm text-center">
-
-                <div class="card-header"
-                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <h5>Имя: {{ applicant.name }}</h5>
-                </div>
-
-                <div class="card-body text-muted"
-                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <h6>Стаж: {{ applicant.experience }} лет</h6>
-                </div>
-
-                <div class="card-body text-muted"
-                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <h6>Рекрутер: {{ applicant.recruiter }} лет</h6>
-                </div>
-
-                <div class="card-body text-muted"
-                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <h6>Работодатель: {{ applicant.employer }} лет</h6>
-                </div>
-
-                <div class="card-footer"
-                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <button type="button" class="w-100 btn btn-m btn-outline-secondary" data-bs-toggle="modal"
-                        data-bs-target="#modal_{{ client.id }}">Редактировать соискателя</button>
-                </div>
-
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="name">Имя</span>
+                <input type="text" class="form-control" name="name" id="name" value="{{ applicant.name }}" required
+                    disabled>
             </div>
-        </div>
 
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="experience">Стаж</span>
+                <input type="number" class="form-control" name="experience" id="experience" step="1" min="0" max="99"
+                    value="{{ applicant.experience }}" required disabled>
+            </div>
 
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="category_id">Рекрутер</span>
+                <input type="text" class="form-control" name="employer" id="employer"
+                    value="{% if applicant.recruiter != None %}{{ applicant.recruiter }}{% else %} --- {% endif %}"
+                    required disabled>
+            </div>
+
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="category_id">Работодатель</span>
+                <input type="text" class="form-control" name="employer" id="employer"
+                    value="{% if applicant.employer != None %}{{ applicant.employer }}{% else %} --- {% endif %}"
+                    required disabled>
+            </div>
+
+        </form>
     </div>
-</form>
+</div>
 
 
 {% endblock %}
