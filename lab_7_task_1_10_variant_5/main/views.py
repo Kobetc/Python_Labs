@@ -1,9 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('<h1>Главная страница</h1>')
+    return render(request, 'main/index.html')
 
 
 def about(request):
-    return HttpResponse('<h1>Страница о нас</h1>')
+    return render(request, 'main/about.html')
