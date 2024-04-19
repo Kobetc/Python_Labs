@@ -1,0 +1,60 @@
+{% extends 'main/template.html' %}
+
+{% block title %}
+<title>Кадровое агентство - Добавление Соискателя</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="row p-3">
+    <div class="col p-3">
+        <h3>Добавление Соискателя</h3>
+    </div>
+</div>
+
+<div class="row p-3">
+    <div class="col col-m p-3">
+        <form method="post" class="needs-validation">
+
+            {% csrf_token %}
+
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="name">Имя</span>
+                <input type="text" class="form-control" name="name" id="name" required>
+            </div>
+
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="experience">Стаж</span>
+                <input type="number" class="form-control" name="experience" id="experience" step="1" min="0" max="99"
+                    required>
+            </div>
+
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="category_id">Рекрутер</span>
+                <select class="form-select" aria-label="Default select example" name="recruiter" id="recruiter">
+                    <option value=""></option>
+                    {% for recruiter in recruiters %}
+                    <option value="{{ recruiter.id }}">{{recruiter.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input-group flex-nowrap mb-3">
+                <span class="input-group-text" id="category_id">Работодатель</span>
+                <select class="form-select" aria-label="Default select example" name="employer" id="employer">
+                    <option value=""></option>
+                    {% for employer in employers %}
+                    <option value="{{ employer.id }}">{{employer.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input-group flex-nowrap mb-3">
+                <button type="submit" class="btn btn-primary mb-3">Создать позицию</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

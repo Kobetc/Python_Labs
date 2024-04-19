@@ -1,0 +1,69 @@
+{% extends 'main/template.html' %}
+
+{% block title %}
+<title>Кадровое агентство - Список Соискателей</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="row p-3">
+    <div class="col p-3">
+        <h3>Просмотр списка Соискателей</h3>
+    </div>
+</div>
+
+<div class="row p-3">
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center g-3 p-3">
+
+            {% for applicant in applicants %}
+
+            <div class="col">
+                <div class="card mb-3 rounded-3 shadow-sm text-center">
+
+                    <div class="card-header"
+                        style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                        <h5>Имя: {{ applicant.name }}</h5>
+                    </div>
+
+                    <div class="card-body text-muted"
+                        style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                        <h6>Стаж: {{ applicant.experience }} лет</h6>
+                    </div>
+
+                    <div class="card-body text-muted"
+                        style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                        <h6>Рекрутер: {{ applicant.recruiter }}</h6>
+                    </div>
+
+                    <div class="card-body text-muted"
+                        style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                        <h6>Работодатель: {{ applicant.employer }}</h6>
+                    </div>
+
+                    <div class="card-footer"
+                        style="min-height: 100px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px">
+
+                        <button type="submit" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                            style="width: 140px;" name="viewId" value="{{ applicant.id }}">Просмотреть</button>
+
+                        <button type="submit" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                            style="width: 140px;" name="editId" value="{{ applicant.id }}">Редактировать</button>
+
+                        <button type="submit" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                            style="width: 140px;" name="deleteId" value="{{ applicant.id }}">Удалить</button>
+                    </div>
+
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

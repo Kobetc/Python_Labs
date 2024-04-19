@@ -1,0 +1,57 @@
+{% extends 'main/template.html' %}
+
+{% block title %}
+<title>Кадровое агентство - Просмотр Соискателя</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="row p-3">
+    <div class="col p-3">
+        <h3>Просмотр Соискателя</h3>
+    </div>
+</div>
+
+<form method="post">
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center g-3 p-3">
+
+
+        <div class="col">
+            <div class="card mb-3 rounded-3 shadow-sm text-center">
+
+                <div class="card-header"
+                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <h5>Имя: {{ applicant.name }}</h5>
+                </div>
+
+                <div class="card-body text-muted"
+                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <h6>Стаж: {{ applicant.experience }} лет</h6>
+                </div>
+
+                <div class="card-body text-muted"
+                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <h6>Рекрутер: {{ applicant.recruiter }} лет</h6>
+                </div>
+
+                <div class="card-body text-muted"
+                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <h6>Работодатель: {{ applicant.employer }} лет</h6>
+                </div>
+
+                <div class="card-footer"
+                    style="min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                    <button type="button" class="w-100 btn btn-m btn-outline-secondary" data-bs-toggle="modal"
+                        data-bs-target="#modal_{{ client.id }}">Редактировать соискателя</button>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</form>
+
+
+{% endblock %}
