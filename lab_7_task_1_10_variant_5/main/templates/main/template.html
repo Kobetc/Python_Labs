@@ -17,14 +17,16 @@
     <div class="container-fluid p-3" style="min-height: 100vh">
         <header>
             <div class="d-flex flex-column flex-md-row align-items-center p-3 mb-4 border-bottom">
-                <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-                    <span class="fs-4">Интернет магазин</span>
+                <a href="{% url 'home' %}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+                    <span class="fs-4">Кадровое агентство</span>
                 </a>
 
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Главная</a>
-                    <a class="py-2 link-body-emphasis text-decoration-none" href="about" style="margin-right: 100px;">О
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'home' %}">Главная</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'about' %}">О
                         сайте</a>
+                    <a class="py-2 link-body-emphasis text-decoration-none" href="/admin">Панель администратора
+                        Django</a>
                 </nav>
 
             </div>
@@ -45,8 +47,12 @@
                 <div class="col-6 col-md" style="text-align: end;">
                     <h5>Разделы сайта</h5>
                     <ul class="list-unstyled text-small">
-                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="/">Главная</a></li>
-                        <li class="mb-3"><a class="link-secondary text-decoration-none" href="about">О сайте</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none"
+                                href="{% url 'home' %}">Главная</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'about' %}">О
+                                сайте</a></li>
+                        <li class="mb-3"><a class="link-secondary text-decoration-none" href="/admin">Панель
+                                администратора Django</a></li>
                     </ul>
                 </div>
 
