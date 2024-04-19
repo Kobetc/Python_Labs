@@ -6,9 +6,15 @@ from django.db import models
 #
 class Recruiter(models.Model):
     name = models.CharField('Имя', max_length=50, null=False, unique=True)
+    successCount = models.IntegerField(
+        'Число успешных устройств', null=False, default=0)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Рекрутер"
+        verbose_name_plural = "Рекрутеры"
 
 #
 # Таблица Работодатель
@@ -22,6 +28,10 @@ class Employer(models.Model):
     def __str__(self):
         return f"{self.name} - {self.companyName}"
 
+    class Meta:
+        verbose_name = "Работодатель"
+        verbose_name_plural = "Работодатели"
+
 #
 # Таблица Соискатель
 #
@@ -30,8 +40,14 @@ class Employer(models.Model):
 class Applicant(models.Model):
     name = models.CharField('Имя', max_length=50, null=False, unique=True)
     experience = models.IntegerField('Стаж работы', null=False, default=0)
-    id_recruiter = models.IntegerField('id рекрутера', null=True)
-    id_employer = models.IntegerField('id работодателя', null=True)
+    recruiter = models.ForeignKey(
+        Recruiter, on_delete=models.SET_NULL, null=True, blank=True)
+    employer = models.ForeignKey(
+        Employer, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Соискатель"
+        verbose_name_plural = "Соискатели"
