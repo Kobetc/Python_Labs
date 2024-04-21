@@ -59,7 +59,7 @@ applicants = [
     (3, "Тестовый Соискатель 3", 15, None, None),
     (4, "Тестовый Соискатель 4", 0, None, None),
     (5, "Тестовый Соискатель 5", 10, 3, 2),
-    (6, "Тестовый Соискатель 6", 15, None, None),
+    (6, "Тестовый Соискатель 6", 1, None, None),
 ]
 
 cursor.executemany("INSERT INTO Recruiter VALUES(?, ?, ?)", recruiters)
@@ -67,6 +67,19 @@ cursor.executemany("INSERT INTO Employer VALUES(?, ?, ?)", employers)
 cursor.executemany("INSERT INTO Applicant VALUES(?, ?, ?, ?, ?)", applicants)
 
 connection.commit()
+
+cursor.execute(
+    "SELECT * FROM Applicant WHERE experience > 0")
+print(cursor.fetchall())
+
+cursor.execute(
+    "SELECT * FROM Applicant WHERE employer_id NOT NULL")
+print(cursor.fetchall())
+
+cursor.execute(
+    "SELECT name, (SELECT companyName FROM Employer WHERE Applicant.employer_id  = Employer.id) FROM Applicant WHERE employer_id IS NOT NULL")
+print(cursor.fetchall())
+
 
 server_address = ("", 8000)
 
