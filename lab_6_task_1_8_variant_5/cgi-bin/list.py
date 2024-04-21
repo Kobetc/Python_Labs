@@ -45,7 +45,7 @@ print('''
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Главная</a>
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/cgi-bin/list.py">Список</a>
-                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/cgi-bin/list.py">Добавить</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/cgi-bin/add.py">Добавить</a>
                 </nav>
 
             </div>
@@ -103,7 +103,7 @@ print('''
                     <ul class="list-unstyled text-small">
                         <li class="mb-1"><a class="link-secondary text-decoration-none" href="/">Главная</a></li>
                         <li class="mb-1"><a class="link-secondary text-decoration-none" href="/cgi-bin/list.py">Список</a></li>
-                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="/cgi-bin/list.py">Добавить</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="/cgi-bin/add.py">Добавить</a></li>
                     </ul>
                 </div>
             </div>
