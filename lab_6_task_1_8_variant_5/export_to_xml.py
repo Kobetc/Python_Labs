@@ -16,9 +16,8 @@ def export_to_xml():
                 id, 
                 name, 
                 experience, 
-                (SELECT name FROM Employer WHERE Applicant.employer_id  = Employer.id), 
-                (SELECT companyName FROM Employer WHERE Applicant.employer_id  = Employer.id), 
-                (SELECT name FROM Recruiter WHERE Applicant.recruiter_id  = Recruiter.id) 
+                recruiter_id,
+                employer_id
             FROM Applicant"""
     )
 
@@ -26,14 +25,14 @@ def export_to_xml():
 
     for row in cursor.fetchall():
 
-        applicant = ET.SubElement(applicants, 'applicant')
-
-        ET.SubElement(applicant, "id", id=str(row[0]))
-        ET.SubElement(applicant, "name", name=str(row[1]))
-        ET.SubElement(applicant, "experience", experience=str(row[2]))
-        ET.SubElement(applicant, "employerName", employerName=str(row[3]))
-        ET.SubElement(applicant, "companyName", companyName=str(row[4]))
-        ET.SubElement(applicant, "recruiterName", recruiterName=str(row[5]))
+        ET.SubElement(applicants, 'applicant', {
+            "id": str(row[0]),
+            "name": str(row[1]),
+            "experience": str(row[2]),
+            "recruiter_id": str(row[3]),
+            "employer_id": str(row[4])
+        }
+        )
 
     ET.dump(parentElement)
 
