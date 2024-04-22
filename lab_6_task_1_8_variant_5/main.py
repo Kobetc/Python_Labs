@@ -18,7 +18,7 @@ select_from_tables()
 export_to_xml()
 
 
-server_address = ("", 8000)
+server_address = ("", 5000)
 
 httpd = HTTPServer(server_address, CGIHTTPRequestHandler)
 
